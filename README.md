@@ -5,9 +5,9 @@ Github:   [http://github.com/ultraembedded/core_usb_bridge](https://github.com/u
 This component is a USB (CDC-ACM / USB Serial) to AXI4-Lite bus master bridge.  
 This IP enumerates as a full speed (12Mbit/s) USB device which can then be used to read / write to memories / peripherals in your FPGA based SoC.
 
-The PHY / transceiver are built in, requiring no additional external hardware other than a USB port connected to the FPGA I/Os.
+The PHY / transceiver are built in requiring no additional external hardware other than a USB port connected to the FPGA I/Os.
 
-##### Cloning
+#### Cloning
 
 This repo contains submodules, and to clone them run the following command;
 
@@ -16,7 +16,7 @@ git clone --recursive https://github.com/ultraembedded/core_usb_bridge.git
 
 ```
 
-#####  Design Files
+####  Design Files
 ```
 usb_bridge_top.v
 ├── usb_bridge
@@ -39,16 +39,16 @@ usb_bridge_top.v
         └── usb_transceiver.v
 ```
 
-##### Configuration / Requirements
+#### Configuration / Requirements
 * Top: usb_bridge_top
 * Clock: clk_i - 48MHz
 * Reset: rst_i - Asynchronous, active high
 * VID/PID can be changed in usb_desc_rom.v
 
-##### Hardware
+#### Hardware
 
 Connection from your FPGA I/Os can be made simply using a breakout board;
-https://www.sparkfun.com/products/12035
+* [https://www.sparkfun.com/products/12035](https://www.sparkfun.com/products/12035)
 
 In order to enumerate as a USB FS device, there must be a pull-up on the D+ pin (but not on the D- pin).  
 This can be achieved using the internal pull-ups on some FPGAs (though how reliable this is remains to be seen).
@@ -62,7 +62,7 @@ set_property PULLUP TRUE [get_ports usb_dp_io]
 
 For Xilinx FPGAs, pad pull-ups should be disabled before configuration is completed (PUDC_B).
 
-##### Software
+#### Software
 Included python based utils provide peek and poke access, plus binary load / dump support.
 
 Examples:
@@ -74,6 +74,6 @@ Examples:
 ./sw/poke.py -d /dev/ttyACM0 -a 0x0 -v 0x12345678
 ``` 
 
-##### References
+#### References
 * [USB Full Speed PHY](https://github.com/ultraembedded/core_usb_fs_phy)
 * [USB CDC Device](https://github.com/ultraembedded/core_usb_cdc)
